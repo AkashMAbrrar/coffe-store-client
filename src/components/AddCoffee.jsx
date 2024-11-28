@@ -1,4 +1,5 @@
 import React from "react";
+import Swal from "sweetalert2";
 
 const AddCoffee = () => {
   const handleAddCoffee = (e) => {
@@ -21,6 +22,27 @@ const AddCoffee = () => {
       details,
     };
     console.log(newCoffee);
+
+    // send data to the server
+    fetch("http://localhost:5000/coffee", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newCoffee),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Success!",
+            text: "Product Added Successfully",
+            icon: "success",
+            confirmButtonText: "Cool",
+          });
+        }
+      });
   };
 
   return (
@@ -30,9 +52,10 @@ const AddCoffee = () => {
           Add Coffee!
         </h1>
         <p className="py-6">
-          Provident cupiditate voluptatem et in.Quaerat fugiat ut assumenda
-          excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a
-          id nisi.
+          Make Your Day Charming With The Delicious Coffee.Whether sipped slowly
+          in the morning to start the day or shared with friends during a lively
+          gathering, coffee continues to be a symbol of comfort, creativity, and
+          connection for millions around the world.
         </p>
       </div>
       <div className="card bg-base-100 w-full shrink-0 shadow-2xl">
