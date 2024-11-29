@@ -12,6 +12,7 @@ const AddCoffee = () => {
     const taste = form.taste.value;
     const category = form.category.value;
     const details = form.details.value;
+    const photo = form.photo.value;
     const newCoffee = {
       name,
       quantity,
@@ -20,10 +21,11 @@ const AddCoffee = () => {
       taste,
       category,
       details,
+      photo,
     };
     console.log(newCoffee);
 
-    // send data to the server
+    // send data to the server(create)
     fetch("http://localhost:5000/coffee", {
       method: "POST",
       headers: {
@@ -153,7 +155,7 @@ const AddCoffee = () => {
               />
             </div>
           </div>
-
+          {/* fourth row form */}
           <div className="form-control">
             <label className="label">
               <span className="label-text">Photo URL</span>
