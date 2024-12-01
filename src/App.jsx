@@ -1,5 +1,8 @@
 import { useLoaderData } from "react-router-dom";
 import CoffeeCard from "./components/CoffeeCard";
+import Header from "./components/Header";
+import TopBanner from "./components/TopBanner";
+import Footter from "./components/Footter";
 
 function App() {
   // getting all the data
@@ -7,6 +10,8 @@ function App() {
 
   return (
     <>
+      <Header></Header>
+      <TopBanner></TopBanner>
       <div className="m-20">
         <h1 className="text-5xl  text-orange-950 font-bold text-center">
           Hot & Cold Coffees: {coffees.length}
@@ -18,6 +23,9 @@ function App() {
           </div>
         </h1>
       </div>
+
+      {/* footer */}
+      <Footter></Footter>
     </>
   );
 }
