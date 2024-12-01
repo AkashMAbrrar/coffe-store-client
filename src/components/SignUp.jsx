@@ -7,11 +7,28 @@ const SignUp = () => {
   const handleSignUp = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
+    const name = e.target.name.value;
     const password = e.target.password.value;
-    console.log(email, password);
+    console.log(email, password, name);
     createUser(email, password)
       .then((result) => {
-        console.log(result.user);
+        console.log("user created at firebase", result.user);
+        const createdAt = result?.user?.metadata?.creationTime;
+        const newUser = { name, email, createdAt };
+        //  save new user info to the database
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(newUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.insertedId) {
+              console.log("User created in database");
+            }
+          });
       })
       .catch((error) => {
         console.log(error.message, "firebase error");
@@ -31,6 +48,18 @@ const SignUp = () => {
         </div>
         <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
           <form onSubmit={handleSignUp} className="card-body">
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Name</span>
+              </label>
+              <input
+                type="text"
+                placeholder="Enter Your Name"
+                name="name"
+                className="input input-bordered"
+                required
+              />
+            </div>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>

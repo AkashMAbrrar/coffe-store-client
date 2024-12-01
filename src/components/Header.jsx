@@ -32,7 +32,10 @@ const Header = () => {
               <Link to="/addCoffee">AddCoffee</Link>
             </li>
             <li>
-              <Link>About</Link>
+              <Link to="/about">About</Link>
+            </li>
+            <li>
+              <Link to="/users">Users</Link>
             </li>
           </ul>
         </div>
@@ -51,10 +54,13 @@ const Header = () => {
           <li>
             <Link to="/about">About</Link>
           </li>
+          <li>
+            <Link to="/users">Users</Link>
+          </li>
         </ul>
       </div>
       <div className="navbar-end">
-        <Link to="/signin" className="btn">
+        <Link to="/signup" className="btn">
           Login
         </Link>
       </div>
