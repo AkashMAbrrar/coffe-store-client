@@ -51,7 +51,7 @@ const AddCoffee = () => {
   return (
     <div>
       <Header></Header>
-      <div className="lg:w-3/4 mx-auto">
+      <div className="lg:w-3/4 mx-auto mt-16">
         <div className="text-center p-10">
           <h1 className="text-5xl font-bold italic text-[#331A15]">
             Add Coffee!
